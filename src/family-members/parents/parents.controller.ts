@@ -21,30 +21,15 @@ export class ParentsController {
     return gparent.parents
   }
 
-  // Create a parent
-  @Post('grand-parents/:id/add/parent')
-  async createParent(
-    @Param('id', ParseIntPipe) id: number,
-    @Body() createParentDto: ParentDto
-  ) {
-     return await this.parentsService.createParent(id, createParentDto);
-  }
+  
+   // Create a parent with an optional grandParent 
+   @Post('grand-parents/add/parent')
+   async createParent(
+     @Body() createParentDto: ParentDto
+   ) {
+      return await this.parentsService.createParent(createParentDto);
+   }
 
-  // @Patch('update/parent/:id')
-  // async updateGrandParent(
-  //   @Body('name') name: string,
-  //   @Body('surname') surname: string,
-  //   @Param('id') id: number
-  //   ) {
-  //     if(name === '') {
-  //       throw new BadRequestException("Please fill out the name field")
-  //     }
-  //     if(surname === '') {
-  //       throw new BadRequestException("Please fill out the surname field")
-  //     }
-  //     await this.grandParentService.updateFamilyMember(id, {name, surname})
-  //     return this.grandParentService.getFamilyMemberBy({id})
-  //   }
-
+  // TODO add update and delete functionality to parents
 
 }
